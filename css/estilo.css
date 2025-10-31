@@ -6,13 +6,20 @@
   font-family: sans-serif;
   text-decoration: none;
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 .container {
   padding: 120px 80px;
 }
+
 .destaque {
   font-weight: 700;
   font-style: italic;
 }
+
 h3 {
   font-size: 36px;
   color: #3c184e;
@@ -26,25 +33,43 @@ h3 {
   background-image: url("../img/banner-topo.jpg");
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* Garantir que a imagem apareça no mobile */
+@media screen and (max-width: 768px) {
+  .banner-topo {
+    background-attachment: scroll;
+    background-position: center center;
+    background-size: cover;
+    min-height: 100vh;
+  }
 }
 
 .container-nome-logo {
   max-width: 250px;
   color: #3c184e;
 }
+
 .container-nome-logo img {
   width: 30px;
   margin-right: 5px;
 }
+
 .container-nome-logo .nome-pet-shop {
   font-size: 35px;
   margin: 0 0 5px 0;
 }
+
 .container-nome-logo .slogan-pet-shop {
   font-size: 14px;
   text-align: center;
   margin: 0;
 }
+
 .container-titulo-topo {
   max-width: 1024px;
   border-radius: 10px;
@@ -52,7 +77,9 @@ h3 {
   margin: 70px auto 0;
   background: #ffffffc4;
   box-shadow: 0 8px 32px #1f26875e;
+  backdrop-filter: blur(10px);
 }
+
 .titulo-topo {
   font-size: 60px;
   color: #3c184e;
@@ -60,6 +87,7 @@ h3 {
   font-weight: 800;
   margin: 0 0 40px;
 }
+
 .link-fale-conosco {
   text-align: center;
   width: 200px;
@@ -68,10 +96,19 @@ h3 {
   background-color: #3c184e;
   border-radius: 10px;
   margin: 0 auto;
+  transition: all 0.3s ease;
+  cursor: pointer;
 }
+
+.link-fale-conosco:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(60, 24, 78, 0.4);
+}
+
 .link-fale-conosco a {
   color: #ffff;
 }
+
 .container-titulo-topo img {
   width: 20px;
 }
@@ -83,18 +120,32 @@ h3 {
   color: #3c184e;
   margin: 0 auto 50px;
 }
+
 .box-servicos li {
   font-size: 20px;
   margin: 0 0 20px;
+  transition: transform 0.3s ease;
 }
+
+.box-servicos li:hover {
+  transform: translateX(10px);
+}
+
 .box-servicos-img {
   max-width: 800px;
   margin: 0 auto;
   text-align: center;
 }
+
 .box-servicos-img img {
   box-shadow: 3px 6px 10px 6px #0000005c;
   border-radius: 5px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box-servicos-img img:hover {
+  transform: scale(1.05);
+  box-shadow: 5px 10px 20px 8px #00000070;
 }
 /* Fim CSS Nossos Serviços */
 
@@ -103,18 +154,32 @@ h3 {
   background-color: #3c184e;
   text-align: center;
 }
+
 .text-faixa {
   max-width: 800px;
   margin: 0 auto 50px;
   color: #fff;
   font-size: 40px;
 }
+
 .redes-sociais a {
   margin: 0 20px;
+  display: inline-block;
+  transition: transform 0.3s ease;
 }
+
+.redes-sociais a:hover {
+  transform: translateY(-5px) rotate(5deg);
+}
+
 .redes-sociais img {
   width: 50px;
   height: 50px;
+  transition: filter 0.3s ease;
+}
+
+.redes-sociais a:hover img {
+  filter: brightness(1.2);
 }
 /* Fim CSS Faixa */
 
@@ -124,10 +189,18 @@ h3 {
   margin: 0 auto;
   text-align: center;
 }
+
 .logo-marca {
   width: 148px;
   height: 148px;
   margin: 0 15px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  cursor: pointer;
+}
+
+.logo-marca:hover {
+  transform: scale(1.1);
+  filter: grayscale(0%);
 }
 /* Fim CSS Marcas */
 
@@ -135,14 +208,18 @@ h3 {
 .onde-estamos {
   text-align: center;
 }
+
 .onde-estamos p {
   color: #3c184e;
   font-size: 20px;
   margin: 0 0 45px;
 }
+
 .onde-estamos iframe {
   width: 800px;
   height: 450px;
+  border-radius: 10px;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
 }
 /* Fim CSS Onde estamos */
 
@@ -151,12 +228,86 @@ h3 {
   background-color: #3c184e;
   padding: 10px 0;
 }
+
 .text-rodape {
   color: #fff;
   font-size: 12px;
   text-align: center;
 }
 /* Fim CSS Rodapé */
+
+/* Adicionando animações JavaScript */
+/* Animações de entrada */
+.fade-in {
+  animation: fadeIn 1s ease-in;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.slide-up {
+  animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Scroll reveal */
+.scroll-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.scroll-reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Botão voltar ao topo */
+.back-to-top {
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+  width: 50px;
+  height: 50px;
+  background-color: #3c184e;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1000;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+.back-to-top.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.back-to-top:hover {
+  background-color: #5a2875;
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+}
 
 /* Adicionando Media Queries para Responsividade - Tablets */
 @media screen and (max-width: 768px) {
@@ -222,6 +373,15 @@ h3 {
     max-width: 700px;
     height: 400px;
   }
+
+  /* Botão voltar ao topo */
+  .back-to-top {
+    width: 45px;
+    height: 45px;
+    font-size: 20px;
+    bottom: 20px;
+    right: 20px;
+  }
 }
 
 /* Adicionando Media Queries para Responsividade - Mobile */
@@ -236,6 +396,11 @@ h3 {
   }
 
   /* Banner */
+  .banner-topo {
+    min-height: 100vh;
+    background-attachment: scroll;
+  }
+
   .container-nome-logo {
     max-width: 200px;
   }
@@ -331,5 +496,14 @@ h3 {
   .text-rodape {
     font-size: 11px;
     padding: 0 10px;
+  }
+
+  /* Botão voltar ao topo */
+  .back-to-top {
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+    bottom: 15px;
+    right: 15px;
   }
 }
